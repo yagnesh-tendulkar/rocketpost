@@ -130,7 +130,7 @@ itemSchema.pre('save', function (next) {
 const Item = mongoose.model('Item', itemSchema);
 
 
-const createItem = async (Model, data) => {
+export const createItem = async (data) => {
     try {
         const item = new Item(data);
         const savedItem = await item.save();
@@ -140,7 +140,7 @@ const createItem = async (Model, data) => {
     }
 };
 
-const getItems = async (Item, query = {}, options = {}) => {
+export const getItems = async (query = {}, options = {}) => {
     try {
         const items = await Item.find(query, null, options);
         return { statusCode: 200, success: true, data: items }; // 200 OK
@@ -149,7 +149,7 @@ const getItems = async (Item, query = {}, options = {}) => {
     }
 };
 
-const getItemById = async (Item, id) => {
+export const getItemById = async (id) => {
     try {
         const item = await Item.findById(id);
         if (!item) {
@@ -161,7 +161,7 @@ const getItemById = async (Item, id) => {
     }
 };
 
-const updateItem = async (Item, id, updateData) => {
+export const updateItem = async (id, updateData) => {
     try {
         const updatedItem = await Item.findByIdAndUpdate(id, updateData, {
             new: true, // return the modified document
@@ -176,7 +176,7 @@ const updateItem = async (Item, id, updateData) => {
     }
 };
 
-const deleteItem = async (id) => {
+export const deleteItem = async (id) => {
     try {
         const deletedItem = await Item.findByIdAndDelete(id);
         if (!deletedItem) {
@@ -188,12 +188,4 @@ const deleteItem = async (id) => {
     }
 };
 
-module.exports = {
-    createItem,
-    getItems,
-    getItemById,
-    updateItem,
-    deleteItem,
-};
-
-module.exports = Item;
+export default Item;

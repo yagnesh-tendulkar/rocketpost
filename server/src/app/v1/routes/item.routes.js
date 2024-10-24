@@ -1,11 +1,11 @@
 import express from "express";
-// import { deleteUser, updateUser, createUser, getUser, getUserById } from "../controllers/user.controller.js";
+import { createNewItem, deleteItemData, updateItemData, getItemDataById, getItemData } from "../controllers/item.controller.js";
 
 const router = express.Router();
 
-// router.route('/user').post(createUser);
-// router.route('/user').get(getUser);
-// router.route('/user/:id').get(getUserById);
-// router.route('/user/:id').put(updateUser);
-// router.route('/user/:id').delete(deleteUser);
+router.route('/').post(createNewItem);
+router.route('/').get(getItemData);
+router.route('/:id').get(getItemDataById);
+router.route('/:id').put(updateItemData);
+router.route('/:id').delete(deleteItemData);
 export default router;
