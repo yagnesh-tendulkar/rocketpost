@@ -12,24 +12,9 @@ function AppHeader() {
   return (
     <Header className="flex items-center justify-between bg-miracle-dark-blue">
       <div className=" rounded-[6px] mr-5">
-        <img className="aspect-auto w-[120px]" src={MiracleLogo}/>
+        <h2 className="text-miracle-white text-3xl font-bold">Send Post</h2>
       </div>
-      <div className="flex flex-row gap-5">
-        <Select
-          value={locale}
-          style={{ width: 120 }}
-          onChange={(value) => {
-            dispatch(switchLocale(value))
-          }}
-          options={[
-            { value: "En", label: "English" },
-            { value: "Jp", label: "日本語" },
-          ]}
-        />
-        <div className="w-auto h-[32px] flex items-center justify-center text-miracle-white">
-          {Text[locale].withLove}
-        </div>
-      </div>
+
     </Header>
   );
 }

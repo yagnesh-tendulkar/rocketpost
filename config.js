@@ -26,12 +26,10 @@ try {
     // Export environment variables
     config = {
         ENV: env,
-        GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
-        DATABASE_HOST: process.env.SERVER,
-        DATABASE_USER: process.env.USER,
-        DATABASE_PASSWORD: process.env.PASSWORD,
-        DATABASE_NAME: process.env.DATABASE,
-        AREAS: process.env.AREAS
+        DB_USER: process.env.DB_USER,
+        DB_PASSWORD: process.env.DB_PASSWORD,
+        DB_URI: process.env.DB_URI,
+
     };
 } catch (error) {
     console.log(error);

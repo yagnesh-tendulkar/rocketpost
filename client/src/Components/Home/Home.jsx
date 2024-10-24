@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 function Home() {
   const locale = useSelector((state) => state.locale.value)
   return (
-    <div>{Text[locale].homeText}</div>
+    <div>wefweferw</div>
   )
 }
 
