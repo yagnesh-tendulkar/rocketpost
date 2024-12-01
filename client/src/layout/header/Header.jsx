@@ -1,22 +1,14 @@
-import { Layout, Select } from "antd";
-import React from "react";
-import { Text } from "../../common/locale/script";
-import MiracleLogo from "../../assets/Miracle-Logo-White.png"
-import { useDispatch, useSelector } from "react-redux";
-import { switchLocale } from "../../features/locale/localeSlice";
-const { Header } = Layout;
+// src/components/Header.jsx
+import { LucideMenu } from 'lucide-react';
+import React from 'react';
 
-function AppHeader() {
-  const locale = useSelector((state) => state.locale.value)
-  const dispatch = useDispatch()
+export const Header = ({ toggleSidebar }) => {
   return (
-    <Header className="flex items-center justify-between bg-miracle-dark-blue">
-      <div className=" rounded-[6px] mr-5">
-        <h2 className="text-miracle-white text-3xl font-bold">Send Post</h2>
-      </div>
-
-    </Header>
+    <header className=" p-1 md:p-2 flex h-[8vh] items-center">
+      <button onClick={toggleSidebar} className="text-black">
+        <LucideMenu className='p-1 md:p-0 text-black font-bold' />
+      </button>
+      <h1 className="text-2xl md:text-xl pl-1 font-bold">Rocket Post</h1>
+    </header>
   );
-}
-
-export default AppHeader;
+};

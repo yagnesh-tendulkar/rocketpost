@@ -1,38 +1,26 @@
-import { Fragment, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import { Outlet, Route, Routes } from "react-router-dom";
-import AppLayout from "./layout";
-import Home from "./components/home/Home";
-import Reports from "./components/reports/Reports";
+// src/App.jsx
+import React from 'react';
+import Layout from './layout/index';
+import Home from './screens/home/Home';
+import Login from './screens/login/Login';
+import Register from './screens/register/Register';
+import Payment from './screens/payment/Payment';
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+const App = () => {
   return (
-    <Fragment>
-      {!isAuthenticated ? (
-        <Fragment>
-          <div>Login / Register logic goes here</div>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <AppLayout>
-            <Routes>
-              <Route path="/" element={<Outlet />}>
-                <Route path="/home" element={<Home/>} />
-                <Route path="/home/profile" element={<Home/>} />
-              </Route>
-              <Route path="/reports" element={<Outlet />}>
-                <Route path="" element={<Reports/>} />
-              </Route>
-            </Routes>
-          </AppLayout>
-        </Fragment>
-      )}
-    </Fragment>
+    <Routes>
+      {/* Use Layout as a wrapper */}
+      <Route path="/" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="" element={<Layout />}>
+        <Route path="create" element={<Login />} />
+        <Route path="home" element={<Home />} />
+        <Route path="payment" element={<Payment />} />
+
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;

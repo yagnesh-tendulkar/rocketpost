@@ -1,13 +1,10 @@
-import { Layout } from 'antd';
 import React from 'react'
 import { Text } from '../../common/locale/script';
 import { useSelector } from 'react-redux';
-const { Footer } = Layout;
-function AppFooter() {
-  const locale = useSelector((state) => state.locale.value)
+export const Footer = () => {
   return (
-    <Footer className="text-center">{Text[locale].footerText}</Footer>
-  )
+    <footer className="bg-blue-900  p-1 md:p-2 text-center ">
+      <p className='!text-white font-semibold'>&copy; 2024 Rocket Post. All rights reserved.</p>
+    </footer>)
 }
 
-export default AppFooter

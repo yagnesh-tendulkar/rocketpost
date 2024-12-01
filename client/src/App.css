@@ -1,4 +1,5 @@
-html,body{
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -41,4 +42,9 @@ html,body{
 
 .read-the-docs {
   color: #888;
+}
+
+button,
+input {
+  outline: none !important;
 }

@@ -5,6 +5,8 @@ import {
     updateItem,
     deleteItem,
 } from '../models/item.model.js';
+
+import axios from 'axios';
 // Create an item
 export const createNewItem = async (req, res) => {
     const result = await createItem(req.body);
@@ -28,4 +30,29 @@ export const updateItemData = async (req, res) => {
 export const deleteItemData = async (req, res) => {
     const result = await deleteItem(req.params.id);
     res.status(result.statusCode).json(result);
+}
+
+export const pinCodeData = async (req, res) => {
+
+    let code = req.params.code
+    let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'http://www.postalpincode.in/api/pincode/' + code,
+        headers: {}
+    };
+
+    axios.request(config)
+        .then((response) => {
+            // console.log(JSON.stringify(response.data));
+            if (response.data.Status)
+                res.status(200).send(response.data.PostOffice)
+            else {
+                res.status(404).send(response.data)
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
 }

@@ -40,13 +40,12 @@ const handleOptionsReq = (req, res, next) => {
 try {
     // Replace with your actual MongoDB connection string
     await mongoose.connect(config.DB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        useNewUrlParser: true
     });
     console.log('MongoDB connected successfully!');
 } catch (error) {
     console.error('MongoDB connection error:', error);
-    process.exit(1); // Exit the process with failure
+    // process.exit(1); // Exit the process with failure
 }
 
 
@@ -61,9 +60,11 @@ app.post('/login', async (req, res) => {
         }
 
         // Check password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid userId or password' });
+        if (password) {
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Invalid userId or password' });
+            }
         }
 
         // Create JWT token

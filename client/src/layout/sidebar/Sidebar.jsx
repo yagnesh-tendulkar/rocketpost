@@ -1,58 +1,27 @@
-import React from "react";
-import { Layout, Menu, theme } from "antd";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { Text } from "../../common/locale/script";
-import { useSelector } from "react-redux";
-const { Sider } = Layout;
-function AppSidebar() {
-  const navigate = useNavigate();
-  const locale = useSelector((state) => state.locale.value)
-  const items = [
-    {
-      key: `Home`,
-      icon: React.createElement(UserOutlined),
-      label: Text[locale].homeMenu.main,
-      children: [
-        {
-          key: `childrenExample`,
-          icon: React.createElement(LaptopOutlined),
-          label: Text[locale].homeMenu.subOne,
-          children: null,
-          onClick: () => {
-            navigate("/home");
-          },
-        },
-      ],
-    },
-    {
-      key: `Reports`,
-      icon: React.createElement(LaptopOutlined),
-      label: Text[locale].reportsMenu.main,
-      children: null,
-      onClick: () => {
-        navigate("/reports");
-      },
-    },
-  ];
-  return (
-    <Sider width={200} className="h-full overflow-y-auto !bg-white">
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
-        style={{
-          height: "100%",
-          borderRight: 0,
-        }}
-        items={items}
-      />
-    </Sider>
-  );
-}
+// src/components/Sidebar.jsx
+import { LucideContact, LucideHome, LucideInfo, LucideSettings } from 'lucide-react';
+import React from 'react';
 
-export default AppSidebar;
+// className="bg-gray-300 text-white w-24 md:w-44 p-1 md:p-4">
+export const Sidebar = ({ isOpen }) => {
+  return (
+    <aside className={`bg-white text-white transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}  text-white w-24 md:w-44 p-1 md:p-4 fixed inset-y-0 left-0 z-30`}>
+      <nav>
+        <ul>
+          <li className="mt-2 text-black font-semibold flex cursor-pointer">
+            <LucideHome className='p-1 mt-1 text-black font-semibold' />  <div className="hover:text-gray-400">Home</div>
+          </li>
+          <hr className="my-2" />
+          <li className="mt-2 text-black font-semibold flex cursor-pointer">
+            <LucideInfo className='p-1 mt-1 text-black font-semibold' /> <div className="hover:text-gray-400">About</div>
+          </li>
+          <hr className="my-2" />
+
+          <li className="mt-2 text-black font-semibold flex cursor-pointer">
+            <LucideContact className='p-1 mt-1 text-black font-semibold' />  <div className="hover:text-gray-400">Contact</div>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  );
+};
